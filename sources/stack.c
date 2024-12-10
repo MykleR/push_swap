@@ -6,12 +6,11 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/10 17:28:56 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:39:45 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
-
 
 int32_t	stack_pop(t_stack *stack)
 {
@@ -20,8 +19,8 @@ int32_t	stack_pop(t_stack *stack)
 
 	if (__builtin_expect(!stack || !stack->data || !stack->len, 0))
 		return (0);
+	ptr = array_list_get(stack, stack->len - 1);
 	stack->len--;
-	ptr = array_list_get(stack, stack->len);
 	if (__builtin_expect(!ptr, 0))
 		return (0);
 	val = *(int32_t *)ptr;
@@ -51,20 +50,19 @@ bool	stack_parse_fill(t_stack *stack, uint32_t ac, char **av)
 
 bool	stack_parse_duplicates(t_stack *stack)
 {
-	static bool	look_table[UINT32_MAX];
-	uint32_t	index;
 	uint32_t	i;
+	uint32_t	j;
 
 	if (__builtin_expect(!stack || !stack->data || !stack->len, 0))
 		return (false);
 	i = -1;
 	while (++i < stack->len)
 	{
-		index = (*(int32_t *)array_list_get(stack, i)) + ((uint32_t)INT32_MAX + 1);
-		if (look_table[index])
-			return (false);
-		look_table[index] = true;
+		j = i;
+		while (++j < stack->len)
+			if (*(int32_t *)array_list_get(stack, i)
+				== *(int32_t *)array_list_get(stack, j))
+				return (false);
 	}
 	return (true);
-
 }

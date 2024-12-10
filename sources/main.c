@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/10 17:35:12 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:57:52 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	main(int ac, char **av)
 			&& stack_parse_fill(&astack, ac - 1, av + 1)
 			&& stack_parse_duplicates(&astack))
 	{
+		stack_rrx(&astack, 'a');
 		// START SORTING
-		ft_printf(1, "%d\n", stack_pop(&astack));
+		print_stack(&astack);
+		print_stack(&bstack);
 	}
 	else
 		ft_printf(2, "Error\n");
