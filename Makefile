@@ -6,14 +6,14 @@
 #    By: mrouves <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 18:27:35 by mrouves           #+#    #+#              #
-#    Updated: 2024/12/08 12:53:37 by mykle            ###   ########.fr        #
+#    Updated: 2024/12/10 15:58:31 by mrouves          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ifeq (bonus,$(MAKECMDGOALS))
 include sources/sources_bonus.mk
 else
-include sources/sources_manda.mk
+include sources/manda.mk
 endif
 
 NAME 			:= push_swap
