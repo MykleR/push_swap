@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:57:56 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/10 19:00:13 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 13:09:26 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	stack_pa(t_stack *a, t_stack *b, bool log)
 		return ;
 	stack_push(a, stack_pop(b));
 	if (log)
-		ft_printf(1, "pa\n");	
+		ft_printf(1, "pa\n");
 }
 
 void	stack_pb(t_stack *a, t_stack *b, bool log)
@@ -27,7 +27,7 @@ void	stack_pb(t_stack *a, t_stack *b, bool log)
 		return ;
 	stack_push(b, stack_pop(a));
 	if (log)
-		ft_printf(1, "pb\n");	
+		ft_printf(1, "pb\n");
 }
 
 void	stack_sx(t_stack *stack, char name)
@@ -56,7 +56,7 @@ void	stack_rx(t_stack *stack, char name)
 	i = stack->len;
 	while (i-- > 1)
 		ft_memcpy(stack->data + stack->mem * i,
-				stack->data + stack->mem * (i - 1), stack->mem);
+			stack->data + stack->mem * (i - 1), stack->mem);
 	ft_memcpy(stack->data, &top, stack->mem);
 	if (name)
 		ft_printf(1, "r%c\n", name);
@@ -73,7 +73,7 @@ void	stack_rrx(t_stack *stack, char name)
 	i = -1;
 	while (++i < stack->len - 1)
 		ft_memcpy(stack->data + stack->mem * i,
-				stack->data + stack->mem * (i + 1), stack->mem);
+			stack->data + stack->mem * (i + 1), stack->mem);
 	ft_memcpy(stack->data + (stack->len - 1) * stack->mem, &bottom, stack->mem);
 	if (name)
 		ft_printf(1, "rr%c\n", name);
