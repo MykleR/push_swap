@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:57:56 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:21:49 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:39:03 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	pa(t_stack *a, t_stack *b, bool quiet)
 	if (__builtin_expect(!a || !b || !b->len, 0))
 		return ;
 	stack_push(a, stack_pop(b));
+	stack_minmax(a);
+	stack_minmax(b);
 	if (!quiet)
 		ft_printf(1, "pa\n");
 }
@@ -26,6 +28,8 @@ void	pb(t_stack *a, t_stack *b, bool quiet)
 	if (__builtin_expect(!a || !b || !a->len, 0))
 		return ;
 	stack_push(b, stack_pop(a));
+	stack_minmax(a);
+	stack_minmax(b);
 	if (!quiet)
 		ft_printf(1, "pb\n");
 }

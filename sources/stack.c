@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:21:10 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:37:37 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ int32_t	stack_pop(t_stack *stack)
 	if (__builtin_expect(!stack || !stack->len, 0))
 		return (0);
 	return (stack->array[--stack->len]);
+}
+
+void	stack_minmax(t_stack *stack)
+{
+	uint32_t	i;
+
+	stack->min = INT32_MAX;
+	stack->max = INT32_MIN;
+	i = stack->len;
+	while (i--)
+	{
+		if (stack->array[i] > stack->max)
+			stack->max = stack->array[i];
+		if (stack->array[i] < stack->min)
+			stack->min = stack->array[i];
+	}
 }

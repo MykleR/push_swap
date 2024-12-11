@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:33 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:21:08 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:35:29 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	stack_create(t_stack *stack, uint32_t cap, char c);
 void	stack_destroy(t_stack *stack);
 void	stack_push(t_stack *stack, int32_t x);
 int32_t	stack_pop(t_stack *stack);
+void	stack_minmax(t_stack *stack);
 
 // ======================== INSTRUCTIONS =========================
 void	sx(t_stack *a, bool quiet);
