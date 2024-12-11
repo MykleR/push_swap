@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:00:54 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/10 19:03:32 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 17:21:46 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,20 @@ void	stack_rrr(t_stack *a, t_stack *b, bool log)
 	stack_rrx(b, 0);
 	if (log)
 		ft_printf(1, "rrr\n");
+}
+
+bool	stack_sorted(t_stack *stack)
+{
+	uint32_t	i;
+	uint32_t	j;
+
+	i = stack->array.len;
+	while (i--)
+	{
+		j = i;
+		while (j--)
+			if (stack_get(stack, i) > stack_get(stack, j))
+				return (false);
+	}
+	return (true);
 }

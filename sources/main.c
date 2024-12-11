@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 14:36:00 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 18:01:34 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,22 @@ int	main(int ac, char **av)
 {
 	static t_stack	astack = {0};
 	static t_stack	bstack = {0};
-	char	**split_args;
+	char			**split_args;
 
 	split_args = parse_args(ac - 1, av + 1);
-	if (split_args && array_list_create(&astack, sizeof(int32_t))
-		&& array_list_create(&bstack, sizeof(int32_t))
+	if (split_args && array_list_create(&astack.array, sizeof(int32_t))
+		&& array_list_create(&bstack.array, sizeof(int32_t))
 		&& stack_parse_fill(&astack, split_args)
 		&& stack_parse_duplicates(&astack))
 	{
-		print_stack(&astack);
-		sort_three(&astack);
-		print_stack(&astack);
-		print_stack(&bstack);
+		stack_sort(&astack, &bstack);
+		print_stack(&astack.array);
+		print_stack(&bstack.array);
 	}
 	else
 		ft_printf(2, "Error\n");
 	ft_split_free(split_args);
-	array_list_destroy(&astack);
-	array_list_destroy(&bstack);
+	array_list_destroy(&astack.array);
+	array_list_destroy(&bstack.array);
 	return (0);
 }
