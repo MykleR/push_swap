@@ -6,24 +6,30 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/10 18:39:45 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 14:32:54 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-int32_t	stack_pop(t_stack *stack)
+int32_t	stack_get(t_stack *stack, uint32_t index)
 {
 	void	*ptr;
-	int32_t	val;
 
 	if (__builtin_expect(!stack || !stack->data || !stack->len, 0))
 		return (0);
-	ptr = array_list_get(stack, stack->len - 1);
-	stack->len--;
+	ptr = array_list_get(stack, index);
 	if (__builtin_expect(!ptr, 0))
 		return (0);
-	val = *(int32_t *)ptr;
+	return (*(int32_t *)ptr);
+}
+
+int32_t	stack_pop(t_stack *stack)
+{
+	int32_t	val;
+	
+	val = stack_get(stack, stack->len - 1);
+	stack->len--;
 	return (val);
 }
 
@@ -35,13 +41,17 @@ bool	stack_push(t_stack *stack, int32_t x)
 	return (true);
 }
 
-bool	stack_parse_fill(t_stack *stack, uint32_t ac, char **av)
+bool	stack_parse_fill(t_stack *stack, char **args)
 {
-	int32_t	convert;
+	uint32_t	i;
+	int32_t		convert;
 
-	while (ac--)
+	i = 0;
+	while (args[i])
+		i++;
+	while (i--)
 	{
-		if (!ft_safe_atoi(av[ac], &convert))
+		if (!ft_safe_atoi(args[i], &convert))
 			return (false);
 		array_list_insert(stack, &convert);
 	}
