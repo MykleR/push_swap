@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:06:20 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 18:23:17 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:21:21 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	stack_parse_fill(t_stack *stack, char **args)
 	i = 0;
 	while (args[i])
 		i++;
-	if (!stack_create(stack, i))
+	if (!stack_create(stack, i, 'a'))
 		return (false);
 	while (i--)
 	{

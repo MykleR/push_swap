@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 18:38:54 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:21:31 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int ac, char **av)
 
 	split_args = parse_args(ac - 1, av + 1);
 	if (split_args && stack_parse_fill(&a, split_args)
-		&& stack_create(&b, a.cap)
+		&& stack_create(&b, a.cap, 'b')
 		&& stack_parse_check(&a, __check_doubles))
 	{
 		stack_sort(&a, &b);

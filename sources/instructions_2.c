@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_extra.c                                      :+:      :+:    :+:   */
+/*   instructions_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 19:00:54 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 18:32:31 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:19:16 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	stack_ss(t_stack *a, t_stack *b, bool log)
+void	ss(t_stack *a, t_stack *b, bool quiet)
 {
-	stack_sx(a, 0);
-	stack_sx(b, 0);
-	if (log)
+	sx(a, 1);
+	sx(b, 1);
+	if (!quiet)
 		ft_printf(1, "ss\n");
 }
 
-void	stack_rr(t_stack *a, t_stack *b, bool log)
+void	rr(t_stack *a, t_stack *b, bool quiet)
 {
-	stack_rx(a, 0);
-	stack_rx(b, 0);
-	if (log)
+	rx(a, 1);
+	rx(b, 1);
+	if (!quiet)
 		ft_printf(1, "rr\n");
 }
 
-void	stack_rrr(t_stack *a, t_stack *b, bool log)
+void	rrr(t_stack *a, t_stack *b, bool quiet)
 {
-	stack_rrx(a, 0);
-	stack_rrx(b, 0);
-	if (log)
+	rrx(a, 1);
+	rrx(b, 1);
+	if (!quiet)
 		ft_printf(1, "rrr\n");
 }

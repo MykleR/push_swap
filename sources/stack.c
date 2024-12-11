@@ -6,14 +6,14 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 18:13:51 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 19:21:10 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
 
-bool	stack_create(t_stack *stack, uint32_t cap)
+bool	stack_create(t_stack *stack, uint32_t cap, char name)
 {
 	if (__builtin_expect(!stack, 0))
 		return (false);
@@ -21,6 +21,7 @@ bool	stack_create(t_stack *stack, uint32_t cap)
 	stack->len = 0;
 	stack->min = INT32_MAX;
 	stack->max = INT32_MIN;
+	stack->name = name;
 	stack->array = malloc(sizeof(int32_t) * cap);
 	return (stack->array != NULL);
 }
