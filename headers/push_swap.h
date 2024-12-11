@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:33 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 17:49:02 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 18:22:29 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,23 @@
 
 typedef struct s_stack
 {
-	t_array_list	array;
-	int32_t			max;
-	int32_t			min;
+	int32_t		*array;
+	uint32_t	cap;
+	uint32_t	len;
+	int32_t		max;
+	int32_t		min;
 }	t_stack;
 
-int32_t	stack_pop(t_stack *stack);
-int32_t	stack_get(t_stack *stack, uint32_t index);
-bool	stack_push(t_stack *stack, int32_t x);
+
 bool	stack_parse_fill(t_stack *stack, char **split);
-bool	stack_parse_duplicates(t_stack *stack);
-bool	stack_sorted(t_stack *stack);
+bool	stack_parse_check(t_stack *stack, bool (*check)(int32_t, int32_t));
+bool	__check_sorted(int32_t x, int32_t y);
+bool	__check_doubles(int32_t x, int32_t y);
+
+bool	stack_create(t_stack *stack, uint32_t cap);
+void	stack_destroy(t_stack *stack);
+void	stack_push(t_stack *stack, int32_t x);
+int32_t	stack_pop(t_stack *stack);
 
 void	stack_sx(t_stack *stack, char name);
 void	stack_rx(t_stack *stack, char name);

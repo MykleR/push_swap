@@ -6,19 +6,16 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 18:01:34 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/11 18:38:54 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-static void	print_stack(t_array_list *stack)
+static void	print_stack(t_stack *stack)
 {
-	uint32_t	i;
-
-	i = -1;
-	while (++i < stack->len)
-		ft_printf(1, "%d, ", *(int32_t *)array_list_get(stack, i));
+	for(int i = stack->len - 1; i >= 0; i--)
+		ft_printf(1, "%d,", stack->array[i]);
 	ft_printf(1, "\n");
 }
 
@@ -34,24 +31,23 @@ static char	**parse_args(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	static t_stack	astack = {0};
-	static t_stack	bstack = {0};
+	static t_stack	a = {0};
+	static t_stack	b = {0};
 	char			**split_args;
 
 	split_args = parse_args(ac - 1, av + 1);
-	if (split_args && array_list_create(&astack.array, sizeof(int32_t))
-		&& array_list_create(&bstack.array, sizeof(int32_t))
-		&& stack_parse_fill(&astack, split_args)
-		&& stack_parse_duplicates(&astack))
+	if (split_args && stack_parse_fill(&a, split_args)
+		&& stack_create(&b, a.cap)
+		&& stack_parse_check(&a, __check_doubles))
 	{
-		stack_sort(&astack, &bstack);
-		print_stack(&astack.array);
-		print_stack(&bstack.array);
+		stack_sort(&a, &b);
+		print_stack(&a);
+		print_stack(&b);
 	}
 	else
 		ft_printf(2, "Error\n");
 	ft_split_free(split_args);
-	array_list_destroy(&astack.array);
-	array_list_destroy(&bstack.array);
+	stack_destroy(&a);
+	stack_destroy(&b);
 	return (0);
 }
