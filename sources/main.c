@@ -6,27 +6,30 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 20:54:37 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 21:57:09 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-static char	**parse_args(int ac, char **av)
+static bool	is_empty_string(const char *str)
 {
-	if (__builtin_expect(!ac || !av, 0))
-		return (NULL);
-	ac--;
-	while (ac--)
-		av[ac][ft_strlen(av[ac])] = ' ';
-	return (ft_split(av[0], ' '));
+	while (str && *str && (*str == ' ' || *str == '\t' || *str == '\r'))
+		str++;
+	return (!str || !(*str));
 }
 
-static void	clean(t_stack *a, t_stack *b, char **args)
+static char	**parse_args(int ac, char **av)
 {
-	ft_split_free(args);
-	stack_destroy(a);
-	stack_destroy(b);
+	if (__builtin_expect(is_empty_string(av[--ac]), 0))
+		return (NULL);
+	while (ac--)
+	{
+		if (is_empty_string(av[ac]))
+			return (NULL);
+		av[ac][ft_strlen(av[ac])] = ' ';
+	}
+	return (ft_split(av[0], ' '));
 }
 
 int	main(int ac, char **av)
@@ -35,6 +38,8 @@ int	main(int ac, char **av)
 	static t_stack	b = {0};
 	char			**split_args;
 
+	if (__builtin_expect(ac <= 1, 0))
+		return (0);
 	split_args = parse_args(ac - 1, av + 1);
 	if (split_args
 		&& stack_parse_fill(&a, split_args)
@@ -43,6 +48,8 @@ int	main(int ac, char **av)
 		stack_sort(&a, &b);
 	else
 		ft_printf(2, "Error\n");
-	clean(&a, &b, split_args);
+	ft_split_free(split_args);
+	stack_destroy(&a);
+	stack_destroy(&b);
 	return (0);
 }
