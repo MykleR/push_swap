@@ -6,12 +6,11 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 19:53:53 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:55:46 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
-
 
 bool	stack_create(t_stack *stack, uint32_t cap, char name)
 {
@@ -70,16 +69,3 @@ void	stack_minmax(t_stack *stack)
 			stack->index_min = i;
 	}
 }
-
-void	stack_print(t_stack *stack)
-{
-	ft_printf(1, "stack %c : [", stack->name);
-	for(int i = stack->len - 1; i >= 0; i--)
-		ft_printf(1, "%d,", stack->array[i]);
-	ft_printf(1, "]		=>  targets : [");
-	for(int i = stack->len - 1; i >= 0; i--)
-		ft_printf(1, "%u,", stack->targets[i]);
-	ft_printf(1, "]\n");
-}
-
-

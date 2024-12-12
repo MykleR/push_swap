@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 19:54:25 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 20:02:54 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:55:14 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	simplify_moves(t_moves *moves)
 {
-	while(moves->rb && moves->ra)
+	while (moves->rb && moves->ra)
 	{
 		moves->rb--;
 		moves->ra--;
 		moves->rr++;
 	}
-	while(moves->rra && moves->rrb)
+	while (moves->rra && moves->rrb)
 	{
 		moves->rrb--;
 		moves->rra--;

@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:33 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 20:01:00 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 21:00:07 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,4 @@ uint32_t	rotate_top_cost(t_stack *stack, uint32_t index);
 uint32_t	rrotate_top_cost(t_stack *stack, uint32_t index);
 uint32_t	closest_smaller(t_stack *stack, int32_t val);
 uint32_t	closest_bigger(t_stack *stack, int32_t val);
-
-void		quick_sort(int32_t *tab, uint32_t start, uint32_t end);
-
 #endif

@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 20:31:34 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:54:37 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ static char	**parse_args(int ac, char **av)
 	return (ft_split(av[0], ' '));
 }
 
+static void	clean(t_stack *a, t_stack *b, char **args)
+{
+	ft_split_free(args);
+	stack_destroy(a);
+	stack_destroy(b);
+}
+
 int	main(int ac, char **av)
 {
 	static t_stack	a = {0};
@@ -29,16 +36,13 @@ int	main(int ac, char **av)
 	char			**split_args;
 
 	split_args = parse_args(ac - 1, av + 1);
-	if (split_args && stack_parse_fill(&a, split_args)
+	if (split_args
+		&& stack_parse_fill(&a, split_args)
 		&& stack_create(&b, a.cap, 'b')
 		&& stack_parse_check(&a, __check_doubles))
-	{
 		stack_sort(&a, &b);
-	}
 	else
 		ft_printf(2, "Error\n");
-	ft_split_free(split_args);
-	stack_destroy(&a);
-	stack_destroy(&b);
+	clean(&a, &b, split_args);
 	return (0);
 }

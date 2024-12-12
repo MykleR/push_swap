@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:06:20 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 15:15:16 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:55:35 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	stack_parse_fill(t_stack *stack, char **args)
 	return (true);
 }
 
-bool stack_parse_check(t_stack *stack, bool (*check)(int32_t, int32_t))
+bool	stack_parse_check(t_stack *stack, bool (*check)(int32_t, int32_t))
 {
 	uint32_t	i;
 	uint32_t	j;
@@ -46,7 +46,6 @@ bool stack_parse_check(t_stack *stack, bool (*check)(int32_t, int32_t))
 				return (false);
 	}
 	return (true);
-
 }
 
 bool	__check_doubles(int32_t x, int32_t y)

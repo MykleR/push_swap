@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:12:23 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/12 20:30:14 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 21:00:27 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	find_targets(t_stack *a, t_stack *b)
 		b->targets[i] = closest_bigger(a, b->array[i]);
 }
 
-static void finish_sort(t_stack *a)
+static void	finish_sort(t_stack *a)
 {
 	bool	direction;
 
