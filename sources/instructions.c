@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:57:56 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:39:03 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:29:47 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	sx(t_stack *a, bool quiet)
 	val2 = stack_pop(a);
 	stack_push(a, val1);
 	stack_push(a, val2);
+	stack_minmax(a);
 	if (!quiet)
 		ft_printf(1, "s%c\n", a->name);
 }
@@ -61,6 +62,8 @@ void	rx(t_stack *a, bool quiet)
 	while (i-- > 1)
 		a->array[i] = a->array[i - 1];
 	a->array[0] = top;
+	a->index_max = (a->index_max + 1) % a->len;
+	a->index_min = (a->index_min + 1) % a->len;
 	if (!quiet)
 		ft_printf(1, "r%c\n", a->name);
 }
@@ -77,6 +80,14 @@ void	rrx(t_stack *a, bool quiet)
 	while (++i < a->len - 1)
 		a->array[i] = a->array[i + 1];
 	a->array[a->len - 1] = bottom;
+	if (!a->index_min)
+		a->index_min = a->len - 1;
+	else
+		a->index_min--;
+	if (!a->index_max)
+		a->index_max = a->len - 1;
+	else
+		a->index_max--;
 	if (!quiet)
 		ft_printf(1, "rr%c\n", a->name);
 }

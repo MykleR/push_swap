@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 17:17:36 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:37:37 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 19:53:53 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ bool	stack_create(t_stack *stack, uint32_t cap, char name)
 		return (false);
 	stack->cap = cap;
 	stack->len = 0;
-	stack->min = INT32_MAX;
-	stack->max = INT32_MIN;
+	stack->index_min = 0;
+	stack->index_max = 0;
 	stack->name = name;
 	stack->array = malloc(sizeof(int32_t) * cap);
+	stack->targets = malloc(sizeof(uint32_t) * cap);
 	return (stack->array != NULL);
 }
 
@@ -31,9 +32,11 @@ void	stack_destroy(t_stack *stack)
 	if (__builtin_expect(!stack, 0))
 		return ;
 	free(stack->array);
+	free(stack->targets);
 	stack->cap = 0;
 	stack->len = 0;
-	stack->array = 0;
+	stack->array = NULL;
+	stack->targets = NULL;
 }
 
 void	stack_push(t_stack *stack, int32_t x)
@@ -54,14 +57,29 @@ void	stack_minmax(t_stack *stack)
 {
 	uint32_t	i;
 
-	stack->min = INT32_MAX;
-	stack->max = INT32_MIN;
+	stack->index_min = 0;
+	stack->index_max = 0;
+	if (__builtin_expect(!stack->len, 0))
+		return ;
 	i = stack->len;
-	while (i--)
+	while (--i)
 	{
-		if (stack->array[i] > stack->max)
-			stack->max = stack->array[i];
-		if (stack->array[i] < stack->min)
-			stack->min = stack->array[i];
+		if (stack->array[i] > stack->array[stack->index_max])
+			stack->index_max = i;
+		if (stack->array[i] < stack->array[stack->index_min])
+			stack->index_min = i;
 	}
 }
+
+void	stack_print(t_stack *stack)
+{
+	ft_printf(1, "stack %c : [", stack->name);
+	for(int i = stack->len - 1; i >= 0; i--)
+		ft_printf(1, "%d,", stack->array[i]);
+	ft_printf(1, "]		=>  targets : [");
+	for(int i = stack->len - 1; i >= 0; i--)
+		ft_printf(1, "%u,", stack->targets[i]);
+	ft_printf(1, "]\n");
+}
+
+

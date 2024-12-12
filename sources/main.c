@@ -6,18 +6,11 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:04:06 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:21:31 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 20:31:34 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
-
-static void	print_stack(t_stack *stack)
-{
-	for(int i = stack->len - 1; i >= 0; i--)
-		ft_printf(1, "%d,", stack->array[i]);
-	ft_printf(1, "\n");
-}
 
 static char	**parse_args(int ac, char **av)
 {
@@ -41,8 +34,6 @@ int	main(int ac, char **av)
 		&& stack_parse_check(&a, __check_doubles))
 	{
 		stack_sort(&a, &b);
-		print_stack(&a);
-		print_stack(&b);
 	}
 	else
 		ft_printf(2, "Error\n");

@@ -6,7 +6,7 @@
 /*   By: mrouves <mrouves@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 18:06:20 by mrouves           #+#    #+#             */
-/*   Updated: 2024/12/11 19:21:21 by mrouves          ###   ########.fr       */
+/*   Updated: 2024/12/12 15:15:16 by mrouves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@ bool	stack_parse_fill(t_stack *stack, char **args)
 	{
 		if (!ft_safe_atoi(args[i], &number))
 			return (false);
-		if (number > stack->max)
-			stack->max = number;
-		if (number < stack->min)
-			stack->min = number;
 		stack_push(stack, number);
 	}
+	stack_minmax(stack);
 	return (true);
 }
 

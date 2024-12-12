@@ -6,7 +6,7 @@
 #    By: mykle <mykle@42angouleme.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/08 12:47:41 by mykle             #+#    #+#              #
-#    Updated: 2024/12/11 19:19:29 by mrouves          ###   ########.fr        #
+#    Updated: 2024/12/12 20:20:48 by mrouves          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 define TITLE
@@ -28,4 +28,5 @@ SOURCES		:=	main.c\
 				instructions.c\
 				instructions_2.c\
 				sorting.c\
-				quick_sort.c\
+				moves.c\
+				costs.c\
