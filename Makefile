@@ -6,17 +6,15 @@
 #    By: mrouves <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 18:27:35 by mrouves           #+#    #+#              #
-#    Updated: 2024/12/10 17:03:56 by mrouves          ###   ########.fr        #
+#    Updated: 2024/12/13 14:57:38 by mrouves          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-ifeq (bonus,$(MAKECMDGOALS))
-include sources/sources_bonus.mk
-else
 include sources/manda.mk
-endif
-
+include sources/bonus.mk
 NAME 			:= push_swap
+NAME_BONUS		:= checker
+
 DIR_HEADERS		:= headers
 DIR_SOURCES		:= sources
 DIR_OBJS		:= .objs
@@ -27,6 +25,7 @@ LIBFT_INCLUDES	:= $(DIR_LIBFT)/headers
 LIBFT			:= $(DIR_LIBFT)/libft.a
 
 OBJS			:= $(addprefix $(DIR_OBJS)/, $(SOURCES:%.c=%.o))
+OBJS_BONUS		:= $(addprefix $(DIR_OBJS)/, $(SOURCES_BONUS:%.c=%.o))
 
 CC				:= clang
 CFLAGS			:= -Wall -Wextra -Werror -g
@@ -61,9 +60,15 @@ endef
 
 all: $(NAME) $(OBJS)
 
+bonus: $(NAME_BONUS) $(OBJS_BONUS)
+
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(IFLAGS) $^ -o $@
-	@printf "$(BOLD)$(NAME)$(NO_COLOR) compiled $(OK_COLOR)successfully$(NO_COLOR)\n"
+	@printf "$(BOLD)$@$(NO_COLOR) compiled $(OK_COLOR)successfully$(NO_COLOR)\n"
+
+$(NAME_BONUS): $(OBJS_BONUS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(IFLAGS) $^ -o $@
+	@printf "$(BOLD)$@$(NO_COLOR) compiled $(OK_COLOR)successfully$(NO_COLOR)\n"
 
 $(LIBFT):
 	@$(MAKE) -C $(DIR_LIBFT) --no-print-directory -j
@@ -78,11 +83,11 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(NAME_BONUS)
 	@printf "Cleaned $(BOLD)$(NAME)$(NO_COLOR)\n"
+	@printf "Cleaned $(BOLD)$(NAME_BONUS)$(NO_COLOR)\n"
 	@$(MAKE) -C $(DIR_LIBFT) --no-print-directory fclean
 
 re: fclean all
-
-bonus: all
 
 .PHONY: clean fclean re bonus all

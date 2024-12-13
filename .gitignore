@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 push_swap
+checker
 compile_commands.json
 .cache/
 push_swap_visualizer/
